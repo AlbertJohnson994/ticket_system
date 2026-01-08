@@ -130,7 +130,7 @@ const Users = () => {
                     <p style={{ marginTop: '1rem', color: 'hsl(var(--color-text-muted))' }}>Retrieving identity records...</p>
                 </div>
              ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     {filteredUsers.map(user => (
                         <div key={user.id} className="glass-panel" style={{ padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
