@@ -7,6 +7,20 @@ const api = axios.create({
   },
 });
 
+// Add a response interceptor to handle cases where the SPA returns index.html for API calls (Vercel/Static hosting)
+api.interceptors.response.use(
+  (response) => {
+    const contentType = response.headers['content-type'];
+    if (contentType && contentType.includes('text/html')) {
+      return Promise.reject(new Error('API returned HTML, likely not found (SPA fallback)'));
+    }
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 
 // Events Service
 export const eventsApi = {
