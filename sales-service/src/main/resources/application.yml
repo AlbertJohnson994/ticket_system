@@ -1,0 +1,42 @@
+server:
+  port: 4000
+
+spring:
+  application:
+    name: sales-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:sqlite:/data/sales.db}
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+        format_sql: true
+    show-sql: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      adjust-dates-to-context-time-zone: false
+
+events:
+  service:
+    url: ${EVENTS_SERVICE_URL:http://events-service:5001}
+
+users:
+  service:
+    url: ${USERS_SERVICE_URL:http://users-service:3000}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
+logging:
+  level:
+    org.ufop.web.salesservice: DEBUG

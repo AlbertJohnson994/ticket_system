@@ -1,0 +1,114 @@
+services:
+  # Discovery Server (Eureka)
+  discovery-server:
+    build: ./discovery-server
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - ticket-network
+
+  # API Gateway
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "8080:8081" # Map host 8080 to container 8081 (observed running port)
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SERVER_PORT=8081
+    depends_on:
+      - discovery-server
+    networks:
+      - ticket-network
+
+  # Users Service
+  users:
+    build: ./users
+    container_name: users-service
+    ports:
+      - "3000:3000"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/users.db
+    volumes:
+      - users-data:/data
+    depends_on:
+      - discovery-server
+    networks:
+      - ticket-network
+
+  # Sales Service
+  sales-service:
+    build: ./sales-service
+    container_name: sales-service
+    ports:
+      - "4000:4000"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/sales.db
+      - EVENTS_SERVICE_URL=http://events:5001
+      - USERS_SERVICE_URL=http://users:3000
+    volumes:
+      - sales-data:/data
+    depends_on:
+      - discovery-server
+      - events
+      - users
+    networks:
+      - ticket-network
+
+  # Events Service
+  events:
+    build: ./events
+    container_name: events-service
+    ports:
+      - "5001:5001"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/events.db
+    volumes:
+      - events-data:/data
+    depends_on:
+      - discovery-server
+    networks:
+      - ticket-network
+
+  # Notifications Service
+  notifications-service:
+    build: ./notifications-service
+    container_name: notifications-service
+    ports:
+      - "5000:5000"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/data/notifications.db
+    volumes:
+      - notifications-data:/data
+    depends_on:
+      - discovery-server
+    networks:
+      - ticket-network
+
+  # React Frontend
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_TARGET=http://gateway:8080
+    depends_on:
+      - gateway
+    networks:
+      - ticket-network
+
+volumes:
+  users-data:
+  sales-data:
+  events-data:
+  notifications-data:
+
+networks:
+  ticket-network:
+    driver: bridge

@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      routes:
+        - id: users-service
+          uri: lb://USERS-SERVICE
+          predicates:
+            - Path=/api/users/**
+
+        - id: events-service
+          uri: lb://EVENTS-SERVICE
+          predicates:
+            - Path=/api/events/**
+
+        - id: sales-service
+          uri: lb://SALES-SERVICE
+          predicates:
+            - Path=/api/sales/**
+
+        - id: payments-service
+          uri: lb://SALES-SERVICE
+          predicates:
+            - Path=/api/payments/**
+
+        - id: notifications-service
+          uri: lb://NOTIFICATIONS-SERVICE
+          predicates:
+            - Path=/api/notifications/**
+
+        - id: seed-endpoint
+          uri: lb://SALES-SERVICE
+          predicates:
+            - Path=/seed, /health
+
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true

@@ -1,0 +1,9 @@
+ticket-system/
+├── docker-compose.yml
+├── gateway/
+├── sales-service/
+├── events-service/
+├── users-service/
+├── notifications-service/
+├── discovery-server/
+└── frontend/
