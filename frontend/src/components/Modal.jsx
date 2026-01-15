@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
         height: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         backdropFilter: 'blur(4px)',
-        zIndex: 9999, // Ensure it's higher than anything
+        zIndex: 9999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -25,12 +25,8 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="glass-panel"
+          className="glass-panel modal-content"
           style={{
-            width: '100%',
-            maxWidth: '500px',
-            maxHeight: '90vh',
-            overflowY: 'auto',
             backgroundColor: 'hsl(var(--color-bg-elevated))',
             boxShadow: 'var(--shadow-lg)',
             padding: 0,
@@ -38,14 +34,18 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           }}
         >
           <div style={{
-            padding: '1.5rem',
+            padding: '1.25rem 1.5rem',
             borderBottom: '1px solid hsla(0,0%,100%,0.1)',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            position: 'sticky',
+            top: 0,
+            background: 'hsl(var(--color-bg-elevated))',
+            zIndex: 1
           }}>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>{title}</h3>
-            <button onClick={onClose} style={{ color: 'hsl(var(--color-text-muted))' }}>
+            <button onClick={onClose} style={{ color: 'hsl(var(--color-text-muted))', padding: '0.5rem' }}>
               <X size={20} />
             </button>
           </div>

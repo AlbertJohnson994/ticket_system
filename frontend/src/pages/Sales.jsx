@@ -58,7 +58,7 @@ const Sales = () => {
 
     return (
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+             <div className="page-header" style={{ marginBottom: '2.5rem' }}>
                 <div>
                    <h1 style={{ fontSize: '2.25rem', fontWeight: '800', letterSpacing: '-1px' }}>Sales <span className="text-gradient">Intelligence</span></h1>
                    <p style={{ color: 'hsl(var(--color-text-muted))', marginTop: '0.25rem' }}>Real-time revenue monitoring and transaction auditing</p>
@@ -131,7 +131,7 @@ const Sales = () => {
                 </div>
              </div>
 
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+             <div className="page-header" style={{ marginBottom: '1.5rem' }}>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Ledger <span style={{ color: 'hsl(var(--color-text-muted))', fontWeight: '400', fontSize: '1rem' }}>/ Recent Activity</span></h2>
                 <button 
                     onClick={fetchSalesData}
@@ -156,7 +156,7 @@ const Sales = () => {
                     <p style={{ marginTop: '1rem', color: 'hsl(var(--color-text-muted))' }}>Analyzing current sales vectors...</p>
                 </div>
              ) : (
-                <div className="glass-panel" style={{ overflow: 'hidden', border: '1px solid hsla(0,0%,100%,0.1)' }}>
+                <div className="glass-panel table-responsive" style={{ border: '1px solid hsla(0,0%,100%,0.1)' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                         <thead>
                             <tr style={{ background: 'hsla(0,0%,0%,0.2)', color: 'hsl(var(--color-text-muted))', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>

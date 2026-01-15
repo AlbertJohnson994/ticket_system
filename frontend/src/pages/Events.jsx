@@ -219,7 +219,7 @@ const Events = () => {
 
   return (
     <div>
-      <div className="flex-center" style={{ justifyContent: 'space-between', marginBottom: '2rem' }}>
+      <div className="page-header">
         <div>
           <h1 style={{ fontSize: '2rem', fontWeight: '700' }}>Events Management</h1>
           <p style={{ color: 'hsl(var(--color-text-muted))' }}>Create and manage your tickets and events</p>
@@ -230,7 +230,7 @@ const Events = () => {
       </div>
 
       <div style={{ marginBottom: '2rem' }}>
-        <div className="glass-panel flex-center" style={{ padding: '0.75rem 1rem', justifyContent: 'flex-start', gap: '1rem', width: '100%', maxWidth: '400px' }}>
+        <div className="glass-panel flex-center search-bar" style={{ padding: '0.75rem 1rem', justifyContent: 'flex-start', gap: '1rem' }}>
           <Search size={20} style={{ color: 'hsl(var(--color-text-muted))' }} />
           <input 
             type="text" 
@@ -252,7 +252,7 @@ const Events = () => {
       {loading ? (
         <div className="flex-center" style={{ padding: '4rem' }}>Loading...</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+        <div className="grid-responsive-3">
           {filteredEvents.map(event => (
             <div key={event.id} className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>

@@ -103,14 +103,14 @@ const PaymentModal = ({ isOpen, onClose, event, onPaymentSuccess }) => {
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          className="glass-panel"
+          className="glass-panel modal-content"
           style={{
-            width: '100%',
             maxWidth: '550px',
             backgroundColor: 'hsl(var(--color-bg-elevated))',
             border: '1px solid hsla(0,0%,100%,0.15)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            padding: 0
           }}
         >
           {/* Header */}
@@ -170,7 +170,7 @@ const PaymentModal = ({ isOpen, onClose, event, onPaymentSuccess }) => {
 
             {/* Payment Method Selector */}
             <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.9rem', color: 'hsl(var(--color-text-muted))', fontWeight: 600 }}>Select Payment Method</label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '2rem' }}>
+            <div className="payment-method-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginBottom: '2rem' }}>
                 {methods.map(m => {
                     const MethodIcon = m.icon;
                     const isActive = paymentMethod === m.id;

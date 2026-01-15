@@ -86,7 +86,8 @@ const Seeder = () => {
         } catch (error) {
             console.error(error);
             setStatus('error');
-            setMessage('Failed to seed data. Ensure services are running.');
+            const errMsg = error.response?.data?.message || error.message || 'Failed to seed data';
+            setMessage(`Error: ${errMsg}`);
         }
     };
 

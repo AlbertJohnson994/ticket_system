@@ -9,13 +9,7 @@ const Footer = () => {
             background: 'linear-gradient(to bottom, hsla(0,0%,0%,0), hsla(0,0%,0%,0.3))'
         }}>
             <div className="container">
-                <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center', 
-                    flexWrap: 'wrap',
-                    gap: '1rem'
-                }}>
+                <div className="footer-grid">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                         <div style={{ fontSize: '1.25rem', fontWeight: '700', letterSpacing: '-0.5px' }}>
                             Ticket<span className="text-gradient">Sys</span>
@@ -25,7 +19,7 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '1.5rem' }}>
+                    <div className="footer-links-group" style={{ display: 'flex', gap: '1.5rem' }}>
                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                             <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Product</span>
                             <a href="#" style={{ color: 'hsl(var(--color-text-muted))', fontSize: '0.8rem', textDecoration: 'none', transition: 'color 0.2s' }}>Features</a>
@@ -46,15 +40,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div style={{ 
-                    marginTop: '1.5rem', 
-                    paddingTop: '1rem', 
-                    borderTop: '1px solid hsla(0,0%,100%,0.05)',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                    gap: '1rem',
+                <div className="footer-bottom" style={{ 
                     color: 'hsl(var(--color-text-muted))',
                     fontSize: '0.8rem'
                 }}>

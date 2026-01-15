@@ -91,7 +91,7 @@ const Users = () => {
 
     return (
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem' }}>
+             <div className="page-header">
                 <div>
                    <h1 style={{ fontSize: '2.25rem', fontWeight: '800', letterSpacing: '-1px' }}>User <span className="text-gradient">Directory</span></h1>
                    <p style={{ color: 'hsl(var(--color-text-muted))', marginTop: '0.25rem' }}>Manage system identities and access controls</p>
@@ -106,7 +106,7 @@ const Users = () => {
              </div>
 
              {/* Search Bar */}
-             <div className="glass-panel" style={{ padding: '1rem 1.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+             <div className="glass-panel search-bar" style={{ padding: '1rem 1.5rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <Search size={20} style={{ color: 'hsl(var(--color-text-muted))' }} />
                 <input 
                     type="text" 
@@ -130,7 +130,7 @@ const Users = () => {
                     <p style={{ marginTop: '1rem', color: 'hsl(var(--color-text-muted))' }}>Retrieving identity records...</p>
                 </div>
              ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                <div className="grid-responsive-3">
                     {filteredUsers.map(user => (
                         <div key={user.id} className="glass-panel" style={{ padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>

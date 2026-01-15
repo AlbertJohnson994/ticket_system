@@ -19,7 +19,7 @@ const StatCard = ({ title, value, icon: Icon, color }) => (
         <Icon size={20} />
       </div>
     </div>
-    <div style={{ fontSize: '2rem', fontWeight: '700' }}>{value}</div>
+    <div className="stat-card-value">{value}</div>
     <div style={{ color: 'hsl(var(--color-success))', fontSize: '0.8rem', marginTop: '0.5rem' }}>
       Updated just now
     </div>
@@ -62,15 +62,15 @@ const Home = () => {
   return (
     <div>
       <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '3.5rem', fontWeight: '800', lineHeight: 1.1, marginBottom: '1rem' }}>
+        <h1 className="hero-title">
           Manage your <br/>
           <span className="text-gradient">Ticket System</span>
         </h1>
-        <p style={{ color: 'hsl(var(--color-text-muted))', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto' }}>
+        <p className="hero-subtitle">
           A powerful microservices architecture for handling events, sales, and users. 
           Monitor performance and manage resources in real-time.
         </p>
-        <div className="flex-center" style={{ gap: '1rem', marginTop: '2rem' }}>
+        <div className="flex-center flex-col-mobile" style={{ gap: '1rem', marginTop: '2rem', justifyContent: 'center' }}>
           <Link to="/events" className="btn btn-primary">
             Explore Events <ArrowRight size={18} />
           </Link>
@@ -80,12 +80,7 @@ const Home = () => {
         </div>
       </header>
 
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '1.5rem',
-        marginBottom: '3rem'
-      }}>
+      <div className="grid-responsive-3" style={{ marginBottom: '3rem' }}>
         <StatCard 
             title="Total Revenue" 
             value={loading ? "..." : `$${stats.revenue.toLocaleString(undefined, {minimumFractionDigits: 2})}`} 
